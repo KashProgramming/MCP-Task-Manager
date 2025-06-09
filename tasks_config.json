@@ -1,0 +1,15 @@
+{
+    "mcpServers": {
+        "server": {
+            "command": "uv",
+            "args": [
+                "run",
+                "--with",
+                "mcp[cli]",
+                "mcp",
+                "run",
+                "/Users/kashishmandhane/Documents/Kashish Data/Coding/Agentic AI/MCP_task_manager/mcp_task_manager/task_manager/server.py"
+            ]
+        }
+    }
+}
