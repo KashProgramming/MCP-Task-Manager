@@ -32,9 +32,66 @@ The `client.py` file acts as an LLM-powered interface. Just ask it to:
 - “Show task stats”
 The client will handle the rest by invoking matching tools using structured MCP calls.
 
-## Why This Matters
-- A real-world example of how MCP tools can be designed and used
-- Enables LLMs to take action through structured, usable commands
-- Keeps task data local, lightweight, and privacy-friendly
-- Can be easily extended with new tools
-- Ideal for experimenting with agent workflows and tool integration
+## Setup
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/yourusername/mcp-task-manager.git
+cd mcp-task-manager
+````
+
+### 2. Create and activate a virtual environment (recommended)
+
+```bash
+python3 -m venv venv
+source venv/bin/activate   # On Linux/Mac
+venv\Scripts\activate      # On Windows
+```
+
+### 3. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Configure MCP server for Claude Desktop
+Claude Desktop uses a JSON config file to discover MCP servers.
+Add an entry for this server inside your Claude MCP config.
+
+**Linux/Mac**
+```bash
+mkdir -p ~/.config/Claude/mcp
+nano ~/.config/Claude/mcp/tasks_config.json
+```
+
+**Windows (PowerShell)**
+```powershell
+mkdir $env:APPDATA\Claude\mcp -Force
+notepad $env:APPDATA\Claude\mcp\tasks_config.json
+```
+
+Paste this into `tasks_config.json`:
+```json
+{
+  "mcpServers": {
+    "task-manager": {
+      "command": "python",
+      "args": ["server.py"],
+      "cwd": "/absolute/path/to/mcp-task-manager"
+    }
+  }
+}
+```
+*(Replace `/absolute/path/to/mcp-task-manager` with the actual repo path.)*
+
+### 5. Start the MCP server
+From inside the repo:
+```bash
+python server.py
+```
+Claude Desktop will automatically connect to it the next time it starts.
+
+### 6. (Optional) Test with client.py
+You can run the provided client interface directly:
+```bash
+python client.py
+```
