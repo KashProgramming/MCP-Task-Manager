@@ -11,14 +11,6 @@ A toolbox of essential task management capabilities:
 - **Get Stats** — See task statistics (e.g. total, completed, pending)
 All data is stored persistently in a `tasks.json` file, so tasks survive restarts.
 
-## How It Works
-Each tool is implemented as an MCP-compatible function:
-- `add_task` — Adds a task with required fields
-- `list_tasks` — Lists tasks, supports filtering by status
-- `complete_task` — Marks a task as completed
-- `delete_task` — Deletes a task from storage
-- `get_stats` — Returns a summary of current task counts
-
 These tools can be triggered via:
 - An MCP client like **Claude Desktop**
 - A custom client (e.g. `client.py`) using the **Groq API**
@@ -28,8 +20,6 @@ The `client.py` file acts as an LLM-powered interface. Just ask it to:
 - “Add a high priority task to fix bugs in the app”
 - “List my pending tasks”
 - “Mark task 3 as completed”
-- “Delete task 4”
-- “Show task stats”
 The client will handle the rest by invoking matching tools using structured MCP calls.
 
 ## Setup
